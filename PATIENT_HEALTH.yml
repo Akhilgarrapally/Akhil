@@ -1,0 +1,56 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : PATIENT_HEALTH
+  description: "This Consists of the Feilds regarding PATIENT_HEALTH"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /PATIENT_HEALTH:
+    post:
+      description: "Regarding PATIENT_HEALTH"
+      summary: PATIENT_HEALTH
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - PATIENT_HEALTH
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+              PATIENT_HEALTH_ID : 1
+              PATIENT_ID : 1
+              BLOOD_GROUP : B+
+              PATIENT_AGE : 22
+              PATIENT_WEIGHT : 89
+              PATIENT_HEIGHT: 5.8
+              PATIENT_SYSTOLIC_BP : 120
+              PATIENT_DYASTOLIC_BP: 80
+              PATIENT_TEMPARATURE : 90
+              CREATED_BY : Akhil
+              IP_ADDRESS : 192.01.0.2001
+              CREATED_DATE : 2021/06/01 10:00:59
+               
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess

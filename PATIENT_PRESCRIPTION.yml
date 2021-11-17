@@ -1,0 +1,51 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : PATIENT_PRESCRIPTION
+  description: "This Consists of the Feilds regarding PATIENT_PRESCRIPTION"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /PATIENT_PRESCRIPTION:
+    post:
+      description: "Regarding PATIENT_PRESCRIPTION"
+      summary: PATIENT_PRESCRIPTION
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - PATIENT_PRESCRIPTION
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+               PATIENT_ID : 1
+               PATIENT_NAME : Akhil
+               DOCTOR_ID : d0001
+               DOCTOR_NAME : suresh
+               DOCTOR_LICENCE : Doc001
+               MEDICINE_NAME : Drops
+               MEDICINE_QUANTITY : 1
+              
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess

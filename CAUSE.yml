@@ -1,0 +1,50 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : CAUSE
+  description: "This is the Form Which Consists of the Feilds regarding  CAUSE"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /CAUSE:
+    post:
+      description: "Regarding CAUSE"
+      summary: CAUSE
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - CAUSE
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+              SESSION_ID : 1
+              CAUSE_ID : 1
+              CAUSE_NAME : Cause Name
+              INPUT: 1
+              
+              
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess
+

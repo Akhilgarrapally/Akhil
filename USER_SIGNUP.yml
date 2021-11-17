@@ -1,0 +1,52 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : USER_SIGNUP
+  description: "This Consists of the Feilds regarding USER_SIGNUP"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /USER_SIGNUP:
+    post:
+      description: "Regarding USER_SIGNUP"
+      summary: USER_SIGNUP
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - USER_SIGNUP
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+               USER_SIGNUP_ID : 1
+               USER_ID : 2
+               USER_NAME : Akhil
+               USER_MAIL_ID : Akhil@gmail
+               USER_PHONE_NUMBER : 8635862403
+               USER_PASSWORD : mac
+               USER_IP : 192.01.0.2000
+               USER_DATE_CREATED : 2021/06/05 9:00:35
+              
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess
