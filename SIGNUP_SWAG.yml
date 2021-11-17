@@ -1,0 +1,410 @@
+swagger: '2.0'
+
+info:
+   version: "v1"
+   title : Rest API for "USER_SIGNUP" 
+   description : |
+     "This is the process of geting data about USER_SIGNUP and their details."
+      In this API we have total EIGTH post methods each statement consist of different properties.
+
+     USER_SIGNUP:
+     1 USER_SIGN_UP_ID
+     2 USER_ID
+     3 USER_NAME
+     4 USER_MAIL_ID
+     5 USER_PHONE_NUMBER
+     6 USER_PASSWORD
+     7 USER_IP
+     8 USER_DATE_CREATED
+
+     USER USER_SIGN_UP_ID:
+     every user will have signup id which is primary. it should be in integer
+     example:1
+
+     USER USER_ID :
+     every user will have an unique id . it should be in integer
+     example:1
+
+     USER USER_NAME:
+     every user will have an unique name. it should be in string
+     example:'Akhil'
+
+     USER USER_MAIL_ID:
+     every user will have an unique mail id. it should be in string
+     example:'Akhil@gmail.com'
+
+     USER USER_PHONE_NUMBER:
+     every user will have an unique phonenumber. it should be in integer
+     example:9856327410
+
+     USER USER_PASSWORD:
+     every user will have an unique password. it should be in string
+     example:'Akhil'
+
+     USER USER_IP:
+     every user will have an unique ip . it should be in string 
+     example:'192.0.01.5000'
+
+     USER USER_DATA_CREATED:
+     every user will have an unique data created. it should be in number
+     example:2021-05-05 10:00:35
+
+     reference url : https://swagger.io/docs/open-source-tools/swagger-editor/
+
+host: 127.0.0.1:5000
+basepath: /
+
+tags:
+ - name: "USER_SIGNUP"
+   description: "Everything about your user details"
+
+schemes:
+#- "http"
+- "http"
+
+produces:
+ - application/json
+
+path:
+  /USER_SIGNUP/USER_SIGN_UP_ID:
+     post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_SIGN_UP_ID
+
+               description: Auto-incerment key
+               requried: true
+               schema:
+                     -type: integer
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout  
+                       
+
+
+  /USER_SIGNUP/USER_ID:
+     post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_SIGN_ID
+
+               description: Enter id
+               requried: true
+               schema:
+                     -type: integer
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout  
+    
+
+
+  /USER_SIGNUP/USER_NAME:
+     post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_NAME
+
+               description: Enter details
+               requried: true
+               schema:
+                     -type: string
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout  
+
+
+
+  /USER_SIGNUP/USER_MAIL_ID:
+     post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_MAIL_ID
+
+               description: Enter details
+               requried: true
+               schema:
+                     -type: string
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout            
+
+
+
+  /USER_SIGNUP/USER_PHONE_NUMBER:
+     post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_PHONE_NUMBER
+
+               description: integer
+               requried: true
+               schema:
+                     -type: integer
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout            
+
+
+
+  /USER_SIGNUP/USER_PASSWORD:
+     post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_PASSWORD
+
+               description: Enter details
+               requried: true
+               schema:
+                     -type: string
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout             
+
+
+
+  /USER_SIGNUP/USER_IP:
+     post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_IP
+
+               description: Enter details
+               requried: true
+               schema:
+                     -type: string
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout            
+
+
+
+  /USER_SIGNUP/USER_DATE_CREATED:
+    post:
+         summary: upadate details
+         consumes:
+             - application/json
+         produces:
+             - application/json
+         parameters:
+             - in: "body"
+               name: USER_DATE_CREATED
+
+               description: Enter details
+               requried: true
+               schema:
+                     -type: number
+         
+         responses:
+         200:
+             description: sucessfull
+         400:
+             description: Bad request
+         401:
+             description: Unauthorized
+         403:
+             description: Forbidden
+         404:
+             description: Not found
+         500:
+             description: Internal server error  mnm
+         502:
+             description: Bad gateway
+         503:
+             description: Service unavailable
+         504:
+             description: Gateway timeout  
+
+
+
+
+
+definations:
+  USER_SIGNUP:
+    type:object
+  properties:
+         USER_SIGN_UP_ID:
+              type : integer
+              description : A unique identifier of the user
+              example : 1
+         USER_ID:
+              type : integer
+              description : A unique identifier of the user
+              example : 1
+         USER_NAME:
+              type : string
+              description : Name of the user
+              example : "Akhil"
+         USER_MAIL_ID:
+              type : string
+              description : EMail id of the user
+              example : "Akhil@gmail.com"
+         USER_PHONE_NUMBER:
+              type : integer
+              description : Phone number of the user
+              example : 9865327410
+         USER_PASSWORD:
+              type : string
+              description : Password of the user
+              example : "Akhil"
+         USER_IP:
+              type : string
+              description : IP address of the user
+              example : "192.0.01.5000"
+         USER_DATE_CREATED:
+              type : number
+              description : date and time of the user when he/she entered
+              example : 2021/05/05 10:00:35

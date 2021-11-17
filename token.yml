@@ -1,0 +1,128 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : Example For Swagger API
+  description: |
+    API Collection:
+    This Collection Contains Sample Requests of API
+    
+    This Collection Contains:
+    
+    Registration of User
+    
+    Login of the User
+    
+    List of Users
+
+    
+    reference url : https://swagger.io/docs/open-source-tools/swagger-editor/
+    reference url : https://stackoverflow.com/questions/40818908/using-flask-restful-in-spyder
+host: 127.0.0.1:5000
+basePath: /
+
+tags:
+- name: "Form"
+  description: "Everything Regarding SignUp, Login and Users"
+  
+schemes:
+- "https"
+- "http"
+securityDefinitions:
+  bearerAuth:
+      type: apiKey
+      in: query       # can be "header", "query" or "cookie"
+      name: token
+      
+
+produces:
+  - application/json
+
+paths:
+  /sign_up:
+    post:
+      description: "## This request is to get details from the user to Create an Account"
+      summary: Sign Up
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - Collection
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+              USER_NAME : Sam
+              USER_MAIL_ID: Sam@gmail.com
+              USER_PHONE_NUMBER: 9876543201
+              USER_PASSWORD: Sam
+              USER_IP: 10.0.12.3
+              USER_DATE_CREATED: 2021-05-22 02:32:21
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Signed Up Successfully
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: Email ID already or phone number already registered
+          
+
+  /login:
+    post:
+      description: "## By Login it Generate the Token"
+      summary: LOGIN
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - Collection
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            
+            example:
+              USER_MAIL_ID: Sam@gmail.com
+              USER_PASSWORD: Sam
+            
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : LOGIN  Successfully
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: Invalid Password  or UserName
+  /users:
+    get:
+      description: "Get all the information of the  USERS"
+      summary: USER
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - Collection
+      security:
+        - bearerAuth: []  
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Successfully
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: Invalid token
+
+
+      
+  

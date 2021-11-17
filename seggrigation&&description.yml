@@ -1,0 +1,82 @@
+USER_DETAILS ::
+#userdetails
+  it consists of signup login and registartion of the user and the details of the user can be stored in your database 
+  by using this credentials user can access the database
+new_signup
+ signup page consists of 6 feilds uname umail ucc uphone upass cupass this  details are stored in database 
+ it will create an account based on the feilds 
+new_login
+ login page consists of 2 feilds username and userpassword and it values must be match with the data given in the signup, So we can access the account created in signup page
+ it will genarate token and it is also used for Authnecation
+new_registartion
+ registartion page consists 10 feilds user_role user_dob user_gender user_licence_number flat_no street_name city_name state_name country_name zip_code this  details are stored in database 
+ this details consists of user details who are already signedup
+
+Qualification ::
+#qualification
+ qualification consists of get_user_qual total_user_quali user_quali_register user_role and the details of the user can be stored in your database 
+ by this details we can know the qualification and role of the user
+get_user_qual
+ by using token we can know the ID 
+ All qualification of the users
+user_quali_register
+ user_quali_register consists of 7 feilds user_qual user_board user_institute user_commence user_procure score and unit this  details are stored in database 
+ this details consists of user education
+total_user_quali
+ By using the token we can get all the education of the user 
+user_role
+ By using the token we can access to know the role_code and role_name 
+
+DOCTOR_DETAILS ::
+#doctor_details
+ DOCTOR_DETAILS consists of get_doctor_details and total_doctor_dashboard_details and the details of the user can be stored in your database
+ it will as total user details
+get_doctor_details
+ By using the token we can know all qualification of the user who had been logged
+total_doctor_dashboard_details 
+  
+
+
+PAITENT_DETAILS ::
+#paitent_details
+ PAITENT_DETAILS consists of paitent_personal_register paitent_session_details getting_pat_health_params and the details of the user can be stored in your database
+ it will give us PAITENT_DETAILS
+paitent_personal_register
+ paitent_personal_register page consists of 13 feilds pat_name pat_country_code pat_phone pat_gen pat_mail pat_flat pat_street pat_city pat_state pat_country pat_zip pat_dob and user_blood_group this  details are stored in database 
+ this consists of whole personal details of the paitent  
+paitent_session_details
+ By using the patient_id and token we can know the that the patient has a session with the user or not  
+getting_pat_health_params
+ By using the token and userdetails we can save the health details of the paitent
+ it will give us health details of the paitent in boolen
+
+HOSPITAL_DETAILS ::
+#HOSPITAL_DETAILS
+ HOSPITAL_DETAILS consists of get_hospital_name store_causes store_test_results store_tests giving_test_results and the details of the user can be stored in your database
+ it will give us HOSPITAL_DETAILS
+get_hospital_name
+ By using the token and key_hsptl we getting the details of the HOSPITAL like name , address and ID
+store_test_result
+ By using the token and userdetails we can save the testresults of the paitent
+store_tests
+ By using the token and userdetails we can save the tests of the paitent
+giving_test_results
+ By using the token and session we can get results of the tests given to the paitent
+
+HEALTH_DETAILS ::
+#health_details
+ health_details consists of getting_causes store_causes getting_symptoms_and_storing getting_symptoms_and_causes getting_symptoms_and_str getting_tests_from_symptoms and the details of the user can be stored in your database
+ it will give has symptoms and their causes  
+getting_causes
+ By using the token we can know the all the causes and their cause_id  
+store_causes
+ By using the token and userdetails we can save the causes of the paitent in the database  
+getting_symptoms_and_storing
+ By using the token and userdetails we can save the symptoms of the paitent in the database
+getting_symptoms_by_causes
+ By using the token and session_id we can get symptoms and symptom_id
+getting_symptoms_by_str
+ By using the token and userdetails we can 
+getting_tests_from_symptoms
+ By using the token and userdetails we can get tests and their test_id
+
