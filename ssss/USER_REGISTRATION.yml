@@ -1,0 +1,59 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : USER_REGISTRATION
+  description: "This Consists of the Feilds regarding USER_REGISTRATION"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /USER_REGISTRATION:
+    post:
+      description: "Regarding USER_REGISTRATION"
+      summary: USER_REGISTRATION
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - USER_REGISTRATION
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+                USER_REG_ID : 1
+                USER_ID : 1
+                USER_AGE : 22
+                USER_EXPERIANCE : 2
+                USER_GENDER : MALE
+                USER_LICENSE_NUMBER : 2543
+                FLAT_NO : 5-2-1/65
+                STREET_NAME : sevanagar
+                CITY_NAME : HYDERADABAD
+                STATE_NAME : TELANGANA
+                COUNTRY_NAME : INDIA
+                ZIP_CODE : 506315
+                USER_APPROVED : 2022/06/09
+                USER_IP : 192.0.01.20000
+                USER_DATE_REGISTERED : 2021/06/09 9:00:01
+              
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess

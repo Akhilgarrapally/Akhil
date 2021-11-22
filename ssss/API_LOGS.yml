@@ -1,0 +1,46 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : API_LOGS
+  description: "This Consists of the Feilds regarding API_LOGS"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /API_LOGS:
+    post:
+      description: "Regarding API_LOGS"
+      summary: API_LOGS
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - Api_Logs
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+               API_ID : 1
+               API_NAME: "API_LOGS"
+               ERROR_CODE : 200
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess

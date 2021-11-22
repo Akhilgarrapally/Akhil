@@ -1,0 +1,50 @@
+
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : SYMPTOM
+  description: "This Consists of the Feilds regarding SYMPTOM"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /SYMPTOM:
+    post:
+      description: "Regarding SYMPTOM"
+      summary: SYMPTOM
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - SYMPTOM
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+                SESSION_ID : US455
+                SYMPTOM_ID : 1
+                SYMPTOM_NAME : COUGH
+                INPUT : 1
+                
+               
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess
