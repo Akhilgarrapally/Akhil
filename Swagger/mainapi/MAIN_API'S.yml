@@ -1,0 +1,1722 @@
+swagger: "2.0"
+
+
+info:
+  version: "v1"
+  title: REST API for "CLINICAL FIRST"
+  description: |
+   # USER DETAILS 
+
+     ### User details 
+
+       It consists of signup login and registartion of the user and the details of the user can be stored in your database 
+       By using this credentials user can access the database
+   
+     ### Signup
+     
+       Signup page consists of 6 feilds uname umail ucc uphone upass cupass this  details are stored in database 
+       It will create an account based on the feilds 
+   
+     ### Login
+     
+       Login page consists of 2 feilds username and userpassword and it values must be match with the data given in the signup, So we can access the account created in signup page
+       It will genarate token and it is also used for Authnecation
+   
+     ### Registartion
+     
+       Registartion page consists 10 feilds user_role user_dob user_gender user_licence_number flat_no street_name city_name state_name country_name zip_code this  details are stored in database 
+       This details consists of user details who are already signedup 
+
+   # Qualification 
+     
+     ### Qualification
+     
+       Qualification consists of get_user_qual total_user_quali user_quali_register user_role and the details of the user can be stored in your database 
+       By this details we can know the qualification and role of the user
+    
+     ### Get user qual
+    
+       By using token we can know the ID 
+       All qualification of the users
+   
+     ### User quali register
+    
+       User_quali_register consists of 7 feilds user_qual user_board user_institute user_commence user_procure score and unit this  details are stored in database 
+       This details consists of user education
+   
+     ### Total user quali
+    
+       By using the token we can get all the education of the user 
+   
+     ### User role
+    
+       By using the token we can access to know the role_code and role_name 
+
+   # DOCTOR DETAILS 
+     
+     ### Doctor details
+     
+       DOCTOR_DETAILS consists of get_doctor_details and total_doctor_dashboard_details and the details of the user can be stored in your database
+       It will as total user details
+    
+     ### Get doctor details
+    
+       By using the token we can know all qualification of the user who had been logged
+    
+     ### Total doctor dashboard details 
+  
+
+
+
+   # PAITENT DETAILS 
+   
+     ### Paitent details
+     
+       PAITENT_DETAILS consists of paitent_personal_register paitent_session_details getting_pat_health_params and the details of the user can be stored in your database
+       It will give us PAITENT_DETAILS
+     
+     ### Paitent personal register
+     
+       Paitent_personal_register page consists of 13 feilds pat_name pat_country_code pat_phone pat_gen pat_mail pat_flat pat_street pat_city pat_state pat_country pat_zip pat_dob and user_blood_group this  details are stored in database 
+       This consists of whole personal details of the paitent  
+     
+     ### Paitent session details
+     
+       By using the patient_id and token we can know the that the patient has a session with the user or not  
+     
+     ### Getting pat health params
+     
+       By using the token and userdetails we can save the health details of the paitent
+       It will give us health details of the paitent in boolen
+
+   # HOSPITAL DETAILS 
+     
+     ### HOSPITAL DETAILS
+     
+       HOSPITAL_DETAILS consists of get_hospital_name store_causes store_test_results store_tests giving_test_results and the details of the user can be stored in your database
+       It will give us HOSPITAL_DETAILS
+     
+     ### Get hospital name
+     
+       By using the token and key_hsptl we getting the details of the HOSPITAL like name , address and ID
+     
+     ### Store test result
+     
+       By using the token and userdetails we can save the testresults of the paitent
+     
+     ### Store tests
+     
+       By using the token and userdetails we can save the tests of the paitent
+     
+     ### Giving test results
+     
+       By using the token and session we can get results of the tests given to the paitent
+
+   # HEALTH DETAILS
+     
+     ### Health details
+     
+       Health_details consists of getting_causes store_causes getting_symptoms_and_storing getting_symptoms_and_causes getting_symptoms_and_str getting_tests_from_symptoms and the details of the user can be stored in your database
+       It will give has symptoms and their causes  
+     
+     ### Getting causes
+     
+       By using the token we can know the all the causes and their cause_id  
+     
+     ### Store causes
+     
+       By using the token and userdetails we can save the causes of the paitent in the database  
+     
+     ### Getting symptoms and storing
+     
+       By using the token and userdetails we can save the symptoms of the paitent in the database
+     
+     ### Getting symptoms by causes
+     
+       By using the token and session_id we can get symptoms and symptom_id
+     
+     ### Getting tests from symptoms
+     
+       By using the token and userdetails we can get tests and their test_id "
+
+host: "api.clinicalfirst.com"
+   
+
+schemes:
+#  - http
+  - https
+securityDefinitions:
+  bearerAuth:
+      type: apiKey
+      in: header     
+      name: x-access-token
+paths:
+  /user_signup:
+    post:
+      tags:
+        -   USER_DETAILS
+
+      summary: "enter user details "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "user details"
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+             uname : "akhok"
+             umail : "ashok12345@gmail.com"
+             ucc : "+91" 
+             uphone : 9999999999
+             upass : Ashok@123
+             cupass : Ashok@123
+            type : "string"
+            $ref: '#/definitions/user/properties/users'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized  : password must contain Minimum eight characters, at least one letter, one number and one special character"
+          examples : 
+            application/json : password must contain Minimum eight characters, at least one letter, one number and one special character
+
+
+
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /user_login:
+    post:
+      tags:
+        -    USER_DETAILS
+
+      summary: "enter user mail_id or mobile number  and password to login "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter mail_id or mobile number and password"
+          required: true
+          schema:
+            example :
+              username : "ashok12345@gmail.com"
+              password : ashok@123
+            type : "string"
+            $ref: '#/definitions/new_login/properties/username'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /user_register:
+    post:
+      tags:
+        -    USER_DETAILS
+
+      summary: "enter user details to register "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+      parameters:
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              user_role : "Doctor"
+              user_dob : "17/02/1998"
+              user_gender : "Male"
+              user_licence_number : "123456789"
+              flat_no : "78/A"
+              street_name : "Athmaramam street"
+              city_name : "Hyderabad"
+              state_name : "Telangana"
+              country_name : "India"
+              zip_code : 500036
+            type : "string"
+            $ref: '#/definitions/new_registration/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /user_quali_register:
+    post:
+      tags:
+        -    QUALIFICATION 
+
+      summary: "enter user qualification details to register "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+
+      parameters:
+        
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              user_qual : "QU006"
+              user_board : "Osmania university"
+              user_institute : "Osmania medical college"
+              user_commence : "01/01/2028"
+              user_procure : "01/01/2030"
+              score : "70"
+              unit : "%"
+
+            type : "string"
+            $ref: '#/definitions/user_quali_register/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /get_user_qual:
+    get:
+      tags:
+        -    QUALIFICATION
+
+      summary: "getting user qualification details"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+
+      
+              
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /total_user_quals:
+    get:
+      tags:
+        -    QUALIFICATION
+
+      summary: "getting total user qualification details"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /user_role:
+    get:
+      tags:
+        -    QUALIFICATION
+
+      summary: "getting details of user_role"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+            
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /get_doctor_details:
+    get:
+      tags:
+        -    DOCTOR_DETAILS
+
+      summary: "getting the details of the doctor"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+
+      
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /total_doctor_dashboard_details:
+    get:
+      tags:
+        -    DOCTOR_DETAILS
+
+      summary: "getting total doctor dashboard details"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /patient_personal_register:
+    post:
+      tags:
+        -    PAITENT_DETAILS
+
+      summary: "enter paitent details to register "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+                  pat_name : "Tinku"
+                  pat_country_code : "+91"
+                  pat_phone : "9876543215"
+                  pat_gen : "MALE"
+                  pat_mail : "tinku@gmail.com"
+                  pat_flat : "22-1/A/B"
+                  pat_street : "varunodaya colony"
+                  pat_city : "hyderabad"
+                  pat_state : "Telangana"
+                  pat_country : "india"
+                  pat_zip : "500036"
+                  pat_dob : "02/08/2000"
+                  user_blood_group : "A+"
+            type : "string"
+            $ref: '#/definitions/patient_personal_register/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /patient_session_details:
+    post:
+      tags:
+        -    PAITENT_DETAILS
+
+      summary: "enter paitent_id "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              patient_id : "PA007"
+            type : "string"
+            $ref: '#/definitions/patient_session_details/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /getting_pat_health_params:
+    post:
+      tags:
+        -    PAITENT_DETAILS
+
+      summary: "enter paitent health details "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              patient_id : "PA001"
+              o2 : 98
+              weight : 95
+              height : 6
+              bp_sys : 95
+              bp_dya : 110
+              preg_count : 0
+              temp : 95
+              skin : 2
+            type : "string"
+            $ref: '#/definitions/getting_pat_health_params/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /get_hospital_name:
+    post:
+      tags:
+        -    HOSPITAL_DETAILS
+
+      summary: "get hospital name "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              key_hsptl : "as"
+
+            type : "string"
+            $ref: '#/definitions/get_hospital_name/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /store_tests:
+    post:
+      tags:
+        -    HOSPITAL_DETAILS
+
+      summary: "storing the tests data "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              session : "SS0020"
+              tests : ["TE001"]
+
+            type : "string"
+            $ref: '#/definitions/store_tests/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /store_test_result:
+    post:
+      tags:
+        -    HOSPITAL_DETAILS
+
+      summary: "stroing the test_results "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              session : "SS0020"
+              tests : [{"label":"FPS","ID":"TE001","value":80},{"label":"OGTT(fasting)","ID":"TE006","value":30}]
+
+
+            type : "string"
+            $ref: '#/definitions/store_test_result/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /giving_test_result:
+    post:
+      tags:
+        -    HOSPITAL_DETAILS
+
+      summary: "geting test_results "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              session : "SS0020"
+
+            type : "string"
+            $ref: '#/definitions/giving_test_result/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /store_causes:
+    post:
+      tags:
+        -    HEALTH_DETAILS
+
+      summary: " stroing the causes "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              session : SS009
+              causes : ["CA001","CA002"]
+
+            type : "string"
+            $ref: '#/definitions/store_causes/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /getting_symptoms_and_storing:
+    post:
+      tags:
+        -    HEALTH_DETAILS
+
+      summary: "stroing the symptoms  "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+
+      
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              session_id : "SS008"
+              final_symp : ["SY002","SY003"]
+
+            type : "string"
+            $ref: '#/definitions/getting_symptoms_and_storing/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /getting_symptoms_by_cause:
+    post:
+      tags:
+        -    HEALTH_DETAILS
+
+      summary: "getting the symptoms and symptoms_id "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              session_id : "SS008"
+            type : "string"
+            $ref: '#/definitions/getting_symptoms_by_cause/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  
+  /getting_tests_from_symptoms:
+    post:
+      tags:
+        -    HEALTH_DETAILS
+
+      summary: "geting data of tests and tests_id "
+      consumes:
+        - application/json
+      produces:
+        - application/json
+
+      security:
+        - bearerAuth : []
+
+      parameters:
+        
+        - in: "body"
+          name: "user details"
+          
+          
+          description: "Enter details"
+          required: true
+          schema:
+            example :
+              session_id : "SS0020"
+              key_test: "fp"
+
+            type : "string"
+            $ref: '#/definitions/getting_tests_from_symptoms/properties/userinfo'
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+  /getting_causes:
+    get:
+      tags:
+        -    HEALTH_DETAILS
+
+      summary: "getting the all causes with ID"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - bearerAuth : []
+      
+      responses:
+        200:
+          description: sucessfull
+          examples : 
+            application/json : ok
+
+        400:
+          description: Bad request
+          examples : 
+            application/json : bad request
+        401:
+          description: "Unauthorized "
+          examples : 
+            application/json : Unauthorized
+        403:
+          description: Forbidden
+          examples : 
+            application/json : Forbidden
+          
+        404:
+          description: Not found
+          examples : 
+            application/json : Not found
+        500:
+          description: Internal server error 
+          examples : 
+            application/json : Internal server error 
+        502:
+          description: Bad gateway
+          examples : 
+            application/json : Bad gateway
+        503:
+          description: Service unavailable
+          examples : 
+            application/json : Service unavailable
+        504:
+          description: Gateway timeout
+          examples : 
+            application/json : Gateway timeout
+
+
+ 
+
+definitions:
+  user:
+    type: object
+    properties:
+      
+      users:
+        type: string
+        description: "enter the mail_id ,the mail id should be valid and in usage . "
+        example :
+             uname : "ashok"
+             umail : "ashok12345@gmail.com"
+             ucc : "+91" 
+             uphone : "9999999999"
+             upass : Ashok@123
+             cupass : Ashok@123
+  new_login:
+    type: object
+    properties:
+      username:
+        type: string
+        description: "enter the user mail_id or mobile number "
+        example : 
+          username : "ashok12345@gmail.com"
+          password :  Ashok@123
+  new_registration:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+          user_role : "Doctor"
+          user_dob : "17/02/1998"
+          user_gender : "Male"
+          user_licence_number : "123456789"
+          flat_no : "78/A"
+          street_name : "Athmaramam street"
+          city_name : "Hyderabad"
+          state_name : "Telangana"
+          country_name : "India"
+          zip_code : "500036"
+  user_quali_register:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+            user_qual : "QU006"
+            user_board : "Osmania university"
+            user_institute : "Osmania medical college"
+            user_commence : "01/01/2028"
+            user_procure : "01/01/2030"
+            score : "70"
+            unit : "%"
+  get_user_qual:
+    type: object
+    properties:
+      userrole:
+        type: string
+        description: "enter the user Token "
+  total_user_quals:
+    type: object
+    properties:
+      userrole:
+        type: string
+        description: "enter the user Token "
+  user_role:
+    type: object
+    properties:
+      userrole:
+        type: string
+        description: "enter the user Token "
+  get_doctor_details:
+    type: object
+    properties:
+      userrole:
+        type: string
+        description: "enter the user Token "
+  total_doctor_dashboard_details:
+    type: object
+    properties:
+      userrole:
+        type: string
+        description: "enter the user Token "
+  patient_personal_register:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+                  pat_name : "Tinku"
+                  pat_country_code : "+91"
+                  pat_phone : "9876543215"
+                  pat_gen : "MALE"
+                  pat_mail : "tinku@gmail.com"
+                  pat_flat : "22-1/A/B"
+                  pat_street : "varunodaya colony"
+                  pat_city : "hyderabad"
+                  pat_state : "Telangana"
+                  pat_country : "india"
+                  pat_zip : "500036"
+                  pat_dob : "02/08/2000"
+                  user_blood_group : "A+"
+  patient_session_details:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+              patient_id : "PA007"
+  getting_pat_health_params:
+     type: object
+     properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+          patient_id : "PA001"
+          o2 : 98
+          weight : 95
+          height : 6
+          bp_sys : 95
+          bp_dya : 110
+          preg_count : 0
+          temp : 95
+          skin : 2                  
+  get_hospital_name:
+     type: object
+     properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+            key_hsptl : "as"        
+  store_tests:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+          session : "SS0020"
+          tests : ["TE001"]
+  store_test_result:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+              session : "SS0020"
+              tests : [{"label":"FPS","ID":"TE001","value":80},{"label":"OGTT(fasting)","ID":"TE006","value":30}]
+  giving_test_result:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+            session : "SS0020"
+  store_causes:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+          session : SS009
+          causes : ["CA001","CA002"]
+  getting_symptoms_and_storing:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+            session_id : "SS008"
+            final_symp : ["SY002","SY003"]
+  getting_symptoms_by_cause:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+              session_id : "SS008"
+  getting_tests_from_symptoms:
+    type: object
+    properties:
+      userinfo:
+        type: string
+        description: "enter the user details "
+        example : 
+            session_id : "SS0020"
+            key_test: "fp"
+  getting_causes:
+    type: object
+    properties:
+      userrole:
+        type: string
+        description: "enter the user Token "
+
