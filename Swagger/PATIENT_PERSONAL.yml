@@ -1,0 +1,58 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : PATIENT_PERSONAL
+  description: "This Consists of the Feilds regarding PATIENT_PERSONAL"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /patient_personal:
+    post:
+      description: "Regarding PATIENT_PERSONAL"
+      summary: PATIENT_PERSONAL
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - PATIENT_PERSONAL
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+              PATIENT_ID :  1
+              PATIENT_NAME: Akhil
+              PHONE_NUMBER: 9848603404
+              MAIL_ID : Akhil@gmail,com
+              FLAT_NO : 5-1-7
+              STREET_NAME" : Srinagar
+              CITY_NAME: HYDERADABAD
+              STATE_NAME : TS
+              COUNTRY_NAME : India
+              ZIP_CODE : 506315
+              DATE_OF_BIRTH : 1998-12-2
+              CREATED_BY : Akhil
+              IP_ADDRESS : 192.01.0.2010
+              CREATED_DATE : 2021/5/22 11:00:55
+               
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess

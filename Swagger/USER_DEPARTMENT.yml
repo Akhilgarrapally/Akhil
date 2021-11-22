@@ -1,0 +1,50 @@
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : USER_DEPARTMENT
+  description: "This Consists of the Feilds regarding USER_DEPARTMENT"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /USER_DEPARTMENT:
+    post:
+      description: "Regarding USER_DEPARTMENT"
+      summary: USER_DEPARTMENT
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - USER_DEPARTMENT
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+              ID : 1
+              USER_ID : 2
+              DEPT_ID : 405
+              DEPT_NAME : Cardic
+              DEPT_HEAD : Cheif
+               
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess
+

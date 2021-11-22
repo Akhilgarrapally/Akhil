@@ -1,0 +1,50 @@
+
+swagger: '2.0'
+
+info:
+  version: "v1"
+  title : SESSION
+  description: "This Consists of the Feilds regarding SESSION"
+    
+host: 127.0.0.1:5000
+basePath: /
+  
+schemes:
+#- "https"
+- "http"
+
+produces:
+  - application/json
+
+paths:
+  /SESSION:
+    post:
+      description: "Regarding SESSION"
+      summary: SESSION
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - SESSION
+      parameters:
+        - name: Body
+          in: body
+          required: True
+          schema:
+            example :
+                ID : 1
+                SESSION_ID : 2
+                USER_ID : 207
+                PATIENT : 307
+                
+               
+      responses:
+        '200':
+          description: OK
+          examples:
+            application/json : Success
+        '400':
+          description: BAD REQUEST
+          examples:
+            application/json: unsuccess
